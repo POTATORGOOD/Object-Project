@@ -29,5 +29,17 @@ function gotResults(error, results) {
 }
 
 function draw() {
-    image(img, 0, 0, 640, 420)
+    image(img, 0, 0, 640, 420);
+
+    if (status != "") {
+        for (i = 0; i < objects.length; i++) {
+            document.getElementById("status").innerHTML = "Status : Objects Detected"
+            fill("red");
+            percent = floor(objects[i].confidence * 100);
+            text(objects[i].label + " " + percent + "%", objects[i].x + 5, objects[i].y + 15);
+            noFill();
+            stroke("red");
+            rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height)
+        }
+    }
 }
